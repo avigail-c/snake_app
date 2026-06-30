@@ -53,8 +53,10 @@ function changeDirection (newDir) {
 }
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'arrowUp') changeDirection(-20);
-    if (e.key === 'arrowDown') changeDirection(20);
-    if (e.key === 'arrowLeft') changeDirection(-1);
-    if (e.key === 'arrowRight') changeDirection(1);
+    if (e.key === 'ArrowUp') changeDirection(-20);
+    if (e.key === 'ArrowDown') changeDirection(20);
+    if (e.key === 'ArrowLeft') changeDirection(1);
+    if (e.key === 'ArrowRight') changeDirection(-1);
 })
+
+setInterval(move, 200);

@@ -28,6 +28,11 @@ function startGame () {
 }
 
 function move () {
+    const tail = currentSnake.pop();
+    squares[tail].classList. remove('snake');
+    const newHead = currentSnake[0] + direction;
+    currentSnake.unshift(newHead);
+    squares[newHead].classList.add('snake');
     const hitBottom = (currentSnake[0] + 20 >= 400 && direction === 20);
     const hitTop = (currentSnake[0] - 20 < 0 && direction === -20);
     const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);

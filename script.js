@@ -16,3 +16,36 @@ function createBoard() {
     }
 }
 createBoard();
+
+function startGame () {
+    currentSnake.forEach(index => squares[index].classList.remove('snake'));
+    squares[appleIndex].classList.remove('apple');
+    clearInterval(timerId);
+}
+
+function move () {
+    const hitBottom = (currentSnake[0] + 20 >= 400 && direction === 20);
+    const hitTop = (currentSnake[0] - 20 < 0 && direction === -20);
+    const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);
+    const hitLeft = (currentSnake[0] % 20 === 0 && direction -1);
+    const hitSelf = squares[currentSnake[0] + direction]?.classList.contains('snake');
+}
+function generateApple() {
+    do {
+        appleIndex = Math.floor(Math.random() * squares.length);
+    } while (squares[appleIndex].classList.contains('snake'));
+    squares[appleIndex].classList.add('apple');
+}
+
+function changeDirection (newDir) {
+    if(direction + newDir !== 0) {
+        direction = newDir;
+    }
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'arrowUp') changeDirection(-20);
+    if (e.key === 'arrowDown') changeDirection(20);
+    if (e.key === 'arrowLeft') changeDirection(-1);
+    if (e.key === 'arrowRight') changeDirection(1);
+})

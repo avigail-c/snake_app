@@ -1,6 +1,6 @@
 const grid = document.getElementById('grid');
 const scoreDisplay = document.getElementById('score');
-let squares = 1;
+let squares = [];
 let currentSnake = [2, 1, 0];
 let direction = 1;
 let appleIndex = 0;
@@ -16,6 +16,10 @@ function createBoard() {
     }
 }
 createBoard();
+
+startGame();
+
+generateApple();
 
 function startGame () {
     currentSnake.forEach(index => squares[index].classList.remove('snake'));

@@ -1,5 +1,5 @@
 body{
-    background-color: #f0fdf4;
+    background-color: #dd04fa;
     color: #166534;
     font-family: sans-serif;
     display: flex;
@@ -13,7 +13,7 @@ body{
     background: #f0fdf4;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(155, 18, 18, 0.1);
     text-align: center;
 }
 
@@ -23,12 +23,12 @@ body{
     width: 300px;
     height: 300px;
     margin: 20px, auto;
-    background: #eceeeb;
+    background: #7367e0;
     border: 4px solid #b510c4;
 }
 
-#grid div{
-    border: 0.1px solid #1d74ca;
+#grid div {
+    border: 0.1px solid #000000;
 }
 
 .snake {background-color: #22c55e; border-radius: 2px;}

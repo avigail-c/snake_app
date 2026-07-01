@@ -19,25 +19,46 @@ createBoard();
 
 startGame();
 
-generateApple();
 
 function startGame () {
     currentSnake.forEach(index => squares[index].classList.remove('snake'));
     squares[appleIndex].classList.remove('apple');
     clearInterval(timerId);
+    currentSnake = [2, 1, 0];
+    score = 0;
+    direction = 1;
+    intervalTime = 200;
+    scoreDisplay.textContent = score;
+    currentSnake.forEach(index => squares[index].classList.add('snake'));
+    generateApple();
+    timerId = setInterval(move, intervalTime);
 }
 
 function move () {
-    const tail = currentSnake.pop();
-    squares[tail].classList. remove('snake');
-    const newHead = currentSnake[0] + direction;
-    currentSnake.unshift(newHead);
-    squares[newHead].classList.add('snake');
+   
     const hitBottom = (currentSnake[0] + 20 >= 400 && direction === 20);
     const hitTop = (currentSnake[0] - 20 < 0 && direction === -20);
     const hitRight = (currentSnake[0] % 20 === 19 && direction === 1);
-    const hitLeft = (currentSnake[0] % 20 === 0 && direction -1);
+    const hitLeft = (currentSnake[0] % 20 === 0 && direction === -1);
     const hitSelf = squares[currentSnake[0] + direction]?.classList.contains('snake');
+    if (hitRight || hitBottom || hitTop || hitLeft || hitSelf) {
+        return clearInterval(timerId);
+    }
+     const tail = currentSnake.pop();
+    squares[tail].classList.remove('snake');
+    const newHead = currentSnake[0] + direction;
+    currentSnake.unshift(newHead);
+    squares[newHead].classList.add('snake');
+    
+    if (squares[newHead].classList.contains('apple')) {
+        squares[newHead].classList.remove('apple');
+        squares[tail].classList.add('snake');
+        currentSnake.push(tail);
+        score++;
+        scoreDisplay.textContent = score;
+        generateApple();
+    }
+
 }
 function generateApple() {
     do {
@@ -57,6 +78,5 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown') changeDirection(20);
     if (e.key === 'ArrowLeft') changeDirection(1);
     if (e.key === 'ArrowRight') changeDirection(-1);
-})
+});
 
-setInterval(move, 200);

@@ -42,7 +42,7 @@ function move () {
     const hitLeft = (currentSnake[0] % 20 === 0 && direction === -1);
     const hitSelf = squares[currentSnake[0] + direction]?.classList.contains('snake');
     if (hitRight || hitBottom || hitTop || hitLeft || hitSelf) {
-        return clearInterval(timerId);
+        return endGame(timerId);
     }
      const tail = currentSnake.pop();
     squares[tail].classList.remove('snake');
@@ -58,6 +58,17 @@ function move () {
         scoreDisplay.textContent = score;
         generateApple();
     }
+    document.addEventListener('touchStart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+        handleSwipe();
+    }, false);
+
+    document.addEventListener('touchEnd', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    }, false);
 
 }
 function generateApple() {
@@ -80,3 +91,23 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') changeDirection(-1);
 });
 
+function endGame () {
+    clearInterval(timerId);
+}
+
+function handleSwipe () {
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+
+    if (Math.max(absDx, absDy) > 30) {
+        if (absDx > absDy) {
+            if (dx > 0) changeDirection(-1);
+            else changeDirection(1);
+        } else {
+            if (dy > 0) changeDirection(20);
+            else changeDirection(-20);
+        }
+    }
+}

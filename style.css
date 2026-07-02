@@ -1,5 +1,5 @@
 body{
-    background-color: #dd04fa;
+    background-image: url('assets/background\ picture\ .jpeg');
     color: #166534;
     font-family: sans-serif;
     display: flex;
@@ -35,7 +35,7 @@ body{
 .apple {background-color: #ef4444; border-radius: 50%;}
 .controls {margin: 15px 0;}
 .arrow {
-    width: 60px; 
+    width: 120px; 
     height: 60px; 
     font-size: 24px; 
     font-weight: bold; 

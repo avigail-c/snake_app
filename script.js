@@ -58,19 +58,20 @@ function move () {
         scoreDisplay.textContent = score;
         generateApple();
     }
-    document.addEventListener('touchStart', e => {
+   
+}
+ document.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
         touchStartY = e.changedTouches[0].screenY;
         handleSwipe();
     }, false);
 
-    document.addEventListener('touchEnd', e => {
+    document.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
         touchEndY = e.changedTouches[0].screenY;
         handleSwipe();
     }, false);
 
-}
 function generateApple() {
     do {
         appleIndex = Math.floor(Math.random() * squares.length);

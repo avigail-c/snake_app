@@ -17,10 +17,9 @@ function createBoard() {
 }
 createBoard();
 
-startGame();
 
-
-function startGame () {
+function startGame() {
+    playBgMusic();
     currentSnake.forEach(index => squares[index].classList.remove('snake'));
     squares[appleIndex].classList.remove('apple');
     clearInterval(timerId);
@@ -51,6 +50,7 @@ function move () {
     squares[newHead].classList.add('snake');
     
     if (squares[newHead].classList.contains('apple')) {
+        playEatSound();
         squares[newHead].classList.remove('apple');
         squares[tail].classList.add('snake');
         currentSnake.push(tail);
@@ -92,6 +92,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 function endGame () {
+    playGameOver();
     clearInterval(timerId);
 }
 
@@ -110,4 +111,28 @@ function handleSwipe () {
             else changeDirection(-20);
         }
     }
+}
+
+const bgMusic = new Audio('assets/playing.mp3');
+const eatSound = new Audio('assets/eatApple.mp3');
+const gameOver = new Audio('assets/gameOver.mp3');
+
+bgMusic.loop = true;
+bgMusic.volume = 0.3;
+
+function playEatSound () {
+eatSound.currentTime = 0;
+eatSound.play();
+}
+
+function playBgMusic () {
+    bgMusic.play();
+}
+function playStartGame () {
+    start.play();
+}
+function playGameOver () {
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+    gameOver.play();
 }

@@ -4,12 +4,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width" initail-scale="1.0">
         <title>snake app</title>
+        <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+        <link rel="shortcut icon" href="assets/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="LJ Snake App" />
+        <link rel="manifest" href="assets/site.webmanifest" />
+
+
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="game-container">
             <h2> score: <span id="score">0</span></h2>
             <div id="grid"></div>
+            <button class = "arrow" onClick="startGame()">play</button>
+            <button class = "arrow" onClick="endGame()">end</button>
         </div>
         <script src="script.js"></script>
     </body>
